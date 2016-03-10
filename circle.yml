@@ -4,7 +4,8 @@ machine:
 
 test:
   override:
-    - make short-test
+    - echo temporarily disabled
+    - # make short-test
 
 deployment:
   push_to_dockerhub:
