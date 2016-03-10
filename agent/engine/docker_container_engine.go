@@ -40,7 +40,7 @@ import (
 )
 
 const (
-	dockerStopTimeoutSeconds = 30
+	dockerStopTimeoutSeconds = 900
 	dockerDefaultTag         = "latest"
 )
 
