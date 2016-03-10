@@ -1,0 +1,9 @@
+test:
+  override:
+    - make test-in-docker
+
+deployment:
+  push_to_dockerhub:
+    branch: circle-release
+    commands:
+      - make release
