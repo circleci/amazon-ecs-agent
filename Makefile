@@ -13,9 +13,6 @@
 
 .PHONY: all gobuild static docker release certs test clean netkitten test-registry run-functional-tests gremlin gogenerate
 
-
-DOCKER_TAG="0.1.${CIRCLE_BUILD_NUM}-${CIRCLE_SHA1:6}"
-
 all: docker
 
 # Dynamic go build; useful in that it does not have -a so it won't recompile

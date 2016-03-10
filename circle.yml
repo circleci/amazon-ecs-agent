@@ -10,4 +10,4 @@ deployment:
   push_to_dockerhub:
     branch: circle-release
     commands:
-      - make release
+      - DOCKER_TAG="1.8.1.${CIRCLE_BUILD_NUM}-${CIRCLE_SHA1:0:7}" make release
