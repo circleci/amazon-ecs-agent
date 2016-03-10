@@ -13,6 +13,9 @@
 
 .PHONY: all gobuild static docker release certs test clean netkitten test-registry run-functional-tests gremlin gogenerate
 
+SHORT_SHA=$(git rev-parse --short HEAD)
+DOCKER_TAG="0.1.${CIRCLE_BUILD_NUM}-${SHORT_SHA}"
+
 all: docker
 
 # Dynamic go build; useful in that it does not have -a so it won't recompile
@@ -50,8 +53,8 @@ docker-release: golang-base
 # Release packages our agent into a "scratch" based dockerfile
 release: certs docker-release
 	@./scripts/create-amazon-ecs-scratch
-	@docker build -f scripts/dockerfiles/Dockerfile.release -t "amazon/amazon-ecs-agent:latest" .
-	@echo "Built Docker image \"amazon/amazon-ecs-agent:latest\""
+	@docker build -f scripts/dockerfiles/Dockerfile.release -t "circleci/amazon-ecs-agent:${DOCKER_TAG}" .
+	@echo "Built Docker image \"circleci/amazon-ecs-agent:${DOCKER_TAG}\""
 
 gogenerate:
 	./scripts/gogenerate
