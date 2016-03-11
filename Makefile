@@ -52,6 +52,8 @@ release: certs docker-release
 	@./scripts/create-amazon-ecs-scratch
 	@docker build -f scripts/dockerfiles/Dockerfile.release -t "circleci/amazon-ecs-agent:${DOCKER_TAG}" .
 	@echo "Built Docker image \"circleci/amazon-ecs-agent:${DOCKER_TAG}\""
+	@docker login --username=${DOCKER_LOGIN_USERNAME} --password=${DOCKER_LOGIN_PASSWORD}
+	@docker push circleci/amazon-ecs-agent:${DOCKER_TAG}
 
 gogenerate:
 	./scripts/gogenerate
